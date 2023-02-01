@@ -22,7 +22,11 @@ public class Student implements Comparable{
 
     @Override
     public String toString() {
-        return age + " " + marks;
+        return "Student{" +
+                "age=" + age +
+                ", marks=" + marks +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     @Override

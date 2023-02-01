@@ -1,8 +1,5 @@
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -12,27 +9,37 @@ import java.util.stream.Stream;
 public class ByteIO {
     public static void main(String[] args) throws IOException {
 //        Files.list(Paths.get(".")).forEach(System.out::println);
-        FileInputStream inputStream = new FileInputStream("1.txt");
-        FileReader fileReader = new FileReader("1.txt");
+        FileInputStream fileInputStream = new FileInputStream("1.txt");
 
 //        int word;
 //        while ((word = fileReader.read()) >0){
 //            System.out.print((char) word);
 //        }
-//        for (int e: inputStream.readAllBytes()) {
-//            System.out.print((char)e);
-//        }
-        byte[] byteArray = inputStream.readAllBytes();
+        //fileInputStream.skip(3);
 
-        String s = new String(byteArray);
+//        fileInputStream.markSupported();
+//        fileInputStream.reset();
+        FileOutputStream fileOutputStream = new FileOutputStream("1.txt");
+        char[] c = new String("Test").toCharArray();
+        byte[] cb = new byte[c.length]; int index = 0;
+        for (char a : c){
+            cb[index] = (byte) a;
+            index++;
+        }
+        fileOutputStream.write(cb);
+        fileOutputStream.flush();
+        //System.out.println(Arrays.toString(fileInputStream.readAllBytes()));
+
+        for (int e: fileInputStream.readAllBytes()) {
+            System.out.print((char)e);
+        }
+
+//        String s = new String(byteArray);
+//        System.out.println(s);
 
         int[] intArr = {1,2,3};
-        Arrays.stream(intArr).boxed().map(Object::toString).forEach(System.out::println);
+        //Arrays.stream(intArr).boxed().map(Object::toString).forEach(System.out::println);
         //List.of(intArr).stream().forEach(System.out::println);
 
-
-
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        //bufferedReader.readLine();
     }
 }
